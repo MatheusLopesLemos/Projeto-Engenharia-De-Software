@@ -27,6 +27,9 @@ public class Prova {
 	//@OneToMany(mappedBy="prova") //--> mappedBy indica qual é o nome do atributo unário presente na outra classe
 	//private Set<Turma> conjTurmas;
 
+	public Prova(){
+		
+	}
 	
 	public Prova(String dr, double p, String tp) throws ModelException {
 		super();

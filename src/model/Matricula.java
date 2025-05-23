@@ -1,8 +1,10 @@
 package model;
 import java.util.Calendar;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 public class Matricula {
 	
@@ -13,10 +15,45 @@ public class Matricula {
 	private int id_matricula;
 	@Column(length = TAM_DATA)
 	private String data;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Turma turma;
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Aluno aluno;
 
-	public Matricula(String d) throws ModelException {
+	
+	
+	
+
+	public Matricula() {
+		
+	}
+
+
+	public Matricula(String d, Turma t, Aluno a) throws ModelException {
 		super();
 		this.setData(d);
+		this.setTurma(t);
+		this.setAluno(a);
+	}
+	
+	public Aluno getAluno() {
+		return this.aluno;
+	}
+
+
+	public void setAluno(Aluno a) throws ModelException {
+		validarAluno(a);
+		this.aluno = a;
+	}
+
+
+	public Turma getTurma() {
+		return this.turma;
+	}
+
+	public void setTurma(Turma t) throws ModelException {
+		validarTurma(t);
+		this.turma = t;
 	}
 	
 	public int getId_matricula() {
@@ -97,5 +134,20 @@ public class Matricula {
 	        throw new ModelException("A data contém números inválidos.");
 	    }
 	}
+	
+		public static void validarTurma(Turma t) throws ModelException {
+			if(t == null)
+				 throw new ModelException("A turma não pode ser nula");
+		}
+		
+		public static void validarAluno(Aluno a) throws ModelException {
+			if(a == null)
+				 throw new ModelException("O aluno não pode ser nulo");
+		}
+		
+		public String toString() {
+			return this.turma + " " + this.data;
+		}
+	
 
 }

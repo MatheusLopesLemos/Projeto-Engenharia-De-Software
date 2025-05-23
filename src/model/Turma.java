@@ -1,10 +1,14 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 public class Turma {
 	
@@ -29,8 +33,14 @@ public class Turma {
 	private Disciplina disciplina;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Professor professor;
+	@OneToMany(mappedBy="turma") //--> mappedBy indica qual é o nome do atributo unário presente na outra classe
+	private Set<Matricula> conjMatriculas;
 	
 	
+
+
+
+
 
 	public Turma() {
 
@@ -39,7 +49,7 @@ public class Turma {
 
 
 	public Turma(String t, String ds, HoraInicio hi, HoraFim hf, int n, Disciplina d,
-			Professor p) throws ModelException{
+			Professor p, Set<Matricula> c ) throws ModelException{
 		super();
 		this.setTurno(t);
 		this.setDiaSemana(ds);
@@ -48,8 +58,20 @@ public class Turma {
 		this.setNumVagas(n);
 		this.setDisciplina(d);
 		this.setProfessor(p);
+		this.setConjMatriculas(c);
 	}
 
+	
+	public Set<Matricula> getConjMatriculas() {
+		return new HashSet<Matricula>(this.conjMatriculas);
+	}
+
+
+
+	public void setConjMatriculas(Set<Matricula> conjMatriculas) throws ModelException {
+		validarConjMatriculas(conjMatriculas);
+		this.conjMatriculas = conjMatriculas;
+	}
 
 
 	public int getId_turma() {
@@ -223,7 +245,11 @@ public class Turma {
 				throw new ModelException("Professor não pode ser nulo");
 		}
 
-
+ 
+	public static void validarConjMatriculas(Set<Matricula> conjMatriculas) throws ModelException {
+		if(conjMatriculas == null)
+			throw new ModelException("O conjunto de matriculas não pode ser nulo!");
+	}
 
 	
 	public String toString() {
