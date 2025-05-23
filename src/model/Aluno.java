@@ -1,5 +1,10 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.OneToMany;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,21 +30,33 @@ public class Aluno {
 	private String endereco;
 	@Column(length = TAM_TEL)
 	private String telefone;
+	@OneToMany(mappedBy="turma") //--> mappedBy indica qual é o nome do atributo unário presente na outra classe
+	private Set<Matricula> conjMatriculas;
 
 	public Aluno() {
 
 	}
 
-	public Aluno(String c, String n, String d, String e, String t) throws ModelException {
+	public Aluno(String c, String n, String d, String e, String t, Set<Matricula> cm) throws ModelException {
 		super();
 		this.setCpf(c);
 		this.setNome(n);
 		this.setDataNasc(d);
 		this.setEndereco(e);
 		this.setTelefone(t);
+		this.setConjMatriculas(cm);
 	}
 	
 	
+
+	public Set<Matricula> getConjMatriculas() {
+		return new HashSet<Matricula>(this.conjMatriculas);
+	}
+
+	public void setConjMatriculas(Set<Matricula> conjMatriculas) throws ModelException {
+		validarConjMatriculas(conjMatriculas);
+		this.conjMatriculas = conjMatriculas;
+	}
 
 	public int getId_aluno() {
 		return this.id_aluno;
@@ -232,6 +249,11 @@ public class Aluno {
 
 		}
 
+	}
+	
+	public static void validarConjMatriculas(Set<Matricula> conjMatriculas) throws ModelException {
+		if(conjMatriculas == null)
+			throw new ModelException("O conjunto de matriculas não pode ser nulo!");
 	}
 
 	public String toString() {
