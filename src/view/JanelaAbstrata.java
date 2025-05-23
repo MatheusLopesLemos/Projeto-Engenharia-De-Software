@@ -7,6 +7,10 @@ import controller.ICtrl;
 
 public class JanelaAbstrata extends JFrame implements IViewer {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//
 	// ATRIBUTOS DE RELACIONAMENTO
 	//
