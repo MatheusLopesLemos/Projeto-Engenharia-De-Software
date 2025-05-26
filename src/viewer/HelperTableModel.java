@@ -1,4 +1,4 @@
-package view;
+package viewer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

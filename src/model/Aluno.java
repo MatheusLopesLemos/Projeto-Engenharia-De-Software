@@ -37,14 +37,14 @@ public class Aluno {
 
 	}
 
-	public Aluno(String c, String n, String d, String e, String t, Set<Matricula> cm) throws ModelException {
+	public Aluno(String c, String n, String d, String e, String t) throws ModelException {
 		super();
 		this.setCpf(c);
 		this.setNome(n);
 		this.setDataNasc(d);
 		this.setEndereco(e);
 		this.setTelefone(t);
-		this.setConjMatriculas(cm);
+		this.setConjMatriculas(new HashSet<Matricula>());
 	}
 	
 	

@@ -49,7 +49,7 @@ public class Turma {
 
 
 	public Turma(String t, String ds, HoraInicio hi, HoraFim hf, int n, Disciplina d,
-			Professor p, Set<Matricula> c ) throws ModelException{
+			Professor p) throws ModelException{
 		super();
 		this.setTurno(t);
 		this.setDiaSemana(ds);
@@ -58,7 +58,7 @@ public class Turma {
 		this.setNumVagas(n);
 		this.setDisciplina(d);
 		this.setProfessor(p);
-		this.setConjMatriculas(c);
+		this.setConjMatriculas(new HashSet<Matricula>());
 	}
 
 	

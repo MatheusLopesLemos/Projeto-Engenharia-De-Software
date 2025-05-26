@@ -1,4 +1,4 @@
-package view;
+package viewer;
 
 import controller.ICtrl;
 
@@ -17,10 +17,10 @@ public interface IViewer {
 	/**
 	 * Método que define o que precisa ser feito para finalizar o viewer
 	 */
-	public abstract void  finalizar();
+	public abstract void  fechar();
 	/**
 	 * Método que define o que precisa ser feito para o viewer ser 
 	 * apresentado ao usuário 
 	 */
-	public abstract void  apresentar();
+	public abstract void  abrir();
 }
