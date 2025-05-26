@@ -1,4 +1,4 @@
-package view;
+package viewer;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,12 +39,12 @@ public class JanelaAbstrata extends JFrame implements IViewer {
 	}
 
 	@Override
-	public void finalizar() {
+	public void fechar() {
 		this.setVisible(false);		
 	}
 
 	@Override
-	public void apresentar() {
+	public void abrir() {
 		this.setVisible(true);		
 	}
 }

@@ -40,5 +40,5 @@ public interface ICtrl {
 	 * Recebe a notificação que um controlador filho foi encerrado
 	 * @param ctrlFilho referência para o controlador que terminou de executar
 	 */
-	public abstract void ctrlFilhoFinalizado(ICtrl ctrlFilho);
+	public abstract void finalizarFilho(ICtrl ctrlFilho);
 }
