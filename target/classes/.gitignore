@@ -1,5 +1,5 @@
-/META-INF/
-/model/
-/view/
-/controller/
 /viewer/
+/META-INF/
+/.gitignore
+/model/
+/controller/

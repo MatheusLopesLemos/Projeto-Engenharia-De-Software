@@ -32,7 +32,7 @@ abstract public class CtrlAbstrato implements ICtrl {
 	}
 	
 	@Override
-	public void ctrlFilhoFinalizado(ICtrl ctrlFilho) {
+	public void  finalizarFilho(ICtrl ctrlFilho) {
 	}
 	
 	public void setStatus(StatusExecucao status) {

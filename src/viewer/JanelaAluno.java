@@ -11,7 +11,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controller.CtrlAbstrato;
+import controller.CtrlAlterarAluno;
 import controller.CtrlIncluirAluno;
+import model.Aluno;
 
 public class JanelaAluno extends JanelaAbstrata {
 	//
@@ -82,13 +84,13 @@ public class JanelaAluno extends JanelaAbstrata {
 					CtrlIncluirAluno ctrl = (CtrlIncluirAluno) getCtrl();
 					ctrl.incluirAluno(cpf, nome, data, endereco, telefone);
 				}
-//				} else if (getCtrl() instanceof CtrlAlterarAluno) {
-//					CtrlAlterarAluno ctrl = (CtrlAlterarAluno) getCtrl();
-//					ctrl.atualizarAluno(cpf, nome, idade, matr, meuCurso);
-//				}
+				else if (getCtrl() instanceof CtrlAlterarAluno) {
+					CtrlAlterarAluno ctrl = (CtrlAlterarAluno) getCtrl();
+					ctrl.editarAluno(cpf, nome, data, endereco, telefone);
+				}
 			}
 		}); 
-		btOk.setBounds(77, 227, 89, 23);
+		btOk.setBounds(71, 227, 89, 23);
 		contentPane.add(btOk);
 
 		JButton btCancelar = new JButton("Cancelar");
@@ -97,7 +99,7 @@ public class JanelaAluno extends JanelaAbstrata {
 				getCtrl().finalizar();
 			}
 		});
-		btCancelar.setBounds(240, 227, 89, 23);
+		btCancelar.setBounds(208, 227, 89, 23);
 		contentPane.add(btCancelar);
 
 		JLabel lblNewLabel_2_1 = new JLabel("Telefone:");
@@ -132,5 +134,13 @@ public class JanelaAluno extends JanelaAbstrata {
 		tfCpf.setText("");
 		tfNome.setText("");
 		tfData.setText("");
+	}
+	
+	public void preencherDados(Aluno a) {
+		tfCpf.setText(a.getCpf());
+		tfTelefone.setText(a.getTelefone());
+		tfData.setText(a.getDataNasc());
+		tfEndereco.setText(a.getEndereco());
+		tfNome.setText(a.getNome());
 	}
 }

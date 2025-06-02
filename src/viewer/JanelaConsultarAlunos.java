@@ -19,7 +19,7 @@ public class JanelaConsultarAlunos extends JanelaAbstrata {
 	//
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
-	private JTable tabela;
+	private JTable tabela;  
 	private Aluno[] listaAlunos;
 
 	/**
@@ -36,21 +36,26 @@ public class JanelaConsultarAlunos extends JanelaAbstrata {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		this.atualizarDados(lstAlunos);
+		
 
 		JButton btSair = new JButton("Sair");
 		btSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Pede ao controlador que o caso de uso seja encerrado
-				getCtrl().encerrar();
+				getCtrl().finalizar();
 			}
 		});
 		btSair.setBounds(317, 227, 89, 23);
 		contentPane.add(btSair);
 
-		JScrollPane scrollPane = new JScrollPane(tabela);
-		scrollPane.setBounds(10, 11, 414, 200);
-		contentPane.add(scrollPane);
+		this.listaAlunos = lstAlunos;
+		HelperTableModel h = new HelperTableModel(lstAlunos);
+		this.tabela = new JTable(h.getTableModel());
+
+		this.scrollPane = new JScrollPane(tabela);
+		this.scrollPane.setBounds(10, 11, 414, 200);
+		contentPane.add(this.scrollPane);
+
 		
 		JButton btnNewButton = new JButton("Adicionar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -102,11 +107,11 @@ public class JanelaConsultarAlunos extends JanelaAbstrata {
 	public void atualizarDados(Aluno[] lstAlunos) {
 		this.listaAlunos = lstAlunos;
 		HelperTableModel h = new HelperTableModel(lstAlunos);
-		if(this.tabela == null)
-			this.tabela = new JTable(h.getTableModel());
-		else 
-			this.tabela.setModel(h.getTableModel());
+		this.tabela.setModel(h.getTableModel());
+		this.tabela.revalidate();
+		this.tabela.repaint();
 	}
+
 
 	/**
 	 * Retorna qual objeto 

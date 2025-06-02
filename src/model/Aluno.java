@@ -198,7 +198,7 @@ public class Aluno {
 		String aux = d.substring(6, 10);
 		int ano = Integer.parseInt(aux);
 		System.out.print(ano);
-		if (ano < 2025 || ano > 2030)
+		if (ano > 2025 || ano < 1925)
 			throw new ModelException("ano deve ser entre 1925 a 2025");
 
 		String aux2 = d.substring(0, 2);

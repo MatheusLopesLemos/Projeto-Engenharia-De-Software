@@ -9,10 +9,10 @@ import viewer.JanelaPrincipal;
 
 public class CtrlPrograma extends CtrlAbstrato {
 	
-	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpa_prjPOO");
-	private static EntityManager        entityManager = entityManagerFactory.createEntityManager();
+	//private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpa_prjPOO");
+	//private static EntityManager        entityManager = entityManagerFactory.createEntityManager();
 	private JanelaPrincipal            janela;
-	private CtrlIncluirAluno ctrlIncluirAluno;
+	private CtrlConsultarAlunos ctrlConsultarAlunos;
 	
 	
 
@@ -21,35 +21,30 @@ public class CtrlPrograma extends CtrlAbstrato {
 		// caso do CtrlPrograma, ele não tem um CtrlPai.
 		super(null);
 		this.janela = new JanelaPrincipal(this);
-		this.ctrlIncluirAluno = null;
+		this.janela.abrir();
+		this.ctrlConsultarAlunos = null;
 	}
 	
 	public static void main(String[] args) {
 		new CtrlPrograma();
 	}
 	
-	public static EntityManager getEntityManager() {
-		// TODO Auto-generated method stub
-		return CtrlPrograma.entityManager;
-	}
+//	public static EntityManager getEntityManager() {
+//		// TODO Auto-generated method stub
+//		return CtrlPrograma.entityManager;
+//	}
+//	
 	
-	
-	public void iniciarIncluirAluno() {
-	if (this.ctrlIncluirAluno == null)
-		this.ctrlIncluirAluno = new CtrlIncluirAluno(this);
-	else		
-		this.janela.notificar("Você já iniciou a funcionalidade de Incluir");
-}
 
-//public void iniciarAlterar() {
-//	// Verificando se o caso de uso não está em execução
-//	if (this.ctrlAlterar == null)
-//		// Se não estiver, inicio a execução do caso de uso
-//		this.ctrlAlterar = new CtrlAlterar(this);
-//	else
-//		// Se já estou executando o caso de uso, aviso que a funcionalidade está rodando
-//		this.janela.notificar("Você já iniciou a funcionalidade de Alteração");
-//}
+	
+	public void iniciarConsultarAlunos() {
+		if (this.ctrlConsultarAlunos == null)
+			this.ctrlConsultarAlunos = new CtrlConsultarAlunos(this);
+		else		
+			this.janela.notificar("Você já iniciou a funcionalidade de consultar");
+	}
+
+
 
 //public void iniciarExcluir() {
 //	// Verificando se o caso de uso não está em execução
@@ -82,8 +77,10 @@ public class CtrlPrograma extends CtrlAbstrato {
 	@Override
 	public void finalizarFilho(ICtrl filho) {
 		// TODO Auto-generated method stub
-		if (filho instanceof CtrlIncluirAluno)
-			this.ctrlIncluirAluno = null;
+		if (filho instanceof CtrlConsultarAlunos)
+			this.ctrlConsultarAlunos = null;
+		
+		
 		
 	}
 	
